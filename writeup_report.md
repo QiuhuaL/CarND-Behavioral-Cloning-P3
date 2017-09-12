@@ -1,4 +1,4 @@
-#**Behavioral Cloning** 
+# **Behavioral Cloning** 
 
 ---
 
@@ -32,9 +32,9 @@ The goals / steps of this project are the following:
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -42,19 +42,19 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network 
 * writeup_report.md summarizing the results
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 For this project, I tried different modesl, including the LeNet model, the model that I built for the second project, traffic sign classifier and the NVIDIA model.
 
 Test results on self-driving show that both the traffic sign classifier and the NVIDIA model were able to finish one lap safely, but the traffic sign classifier has several cases where the car wandered to the side of the road and recovered back later, while testing on the model from NVIDIA model show that the car was able to stay in the center lane for the whole loop.  For the final result of this project, I chose to use the NVIDIA model (model.py lines 106 to 115).
@@ -63,25 +63,25 @@ The model consists of 4 convolutional layers with the filter size of 5x5 or 3x3 
 
 The model includes RELU layers to introduce nonlinearity (code line 106-110), and the data is normalized in the model using a Keras lambda layer (code line 73). 
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 The data set was splitted into training and validation data sets, with a ration of 80%:20%.The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 118-130), where I plotted the mean squared error loss on the training and validation data sets versus the number of epochs. The number of epochs chosen for the final model was 5.
 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 118).
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of two laps of clockwise center lane driving , two laps of counter-clockwise center lane driving, recovering from the left and right sides of the road, one lap of center land driving from the mountain track, and the example data set provided by Udacity.  The images were also flipped to augument the traing data set.
 
 For details about how I created the training data, see the next section. 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to learn the steering behavior and stay as much as to the center of the lane as possible in the self-driving automation mode.
 
@@ -93,7 +93,7 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. The final video result using the NVIDIA model was recorded in the file video.mp4. 
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following sequential layers:
 Layer (type)         notes
@@ -131,7 +131,7 @@ The lamda layer is to noralize the images and the cropping is used to choose an 
 ![alt text][image_normalized]
 ![alt text][image_cropped]
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps of clockwise center lane driving on track one. Here is an example image of clockwise center lane driving:
 
@@ -139,6 +139,7 @@ To capture good driving behavior, I first recorded two laps of clockwise center 
 
 
 I then recorded two laps of counter-clockwise center lane driving on track one. Here is an example image of counter-clockwisecenter lane driving:
+
 ![alt text][image_counterclockwise]
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to recover driving from the sides. These images show what a recovery looks like starting from driving past the right lane line and back to the center of the lane  :
@@ -149,6 +150,7 @@ I then recorded the vehicle recovering from the left side and right sides of the
 ![alt text][image_recover4]
 
 Then I collected one lap of driving on track 2 to get more data.
+
 ![alt text][image_mountain]
 
 Besides the new images collected, I also used the example data set provided by Udacity to increase the the number of images for training.
@@ -166,7 +168,7 @@ I finally randomly shuffled the data set and put 20% of the data into a validati
 
 The results are surprisingly well with the center images, so the model.py that I submitted for review are only using the images from the center camera. 
 
-####4. Extra Expriment With Images From All Three Cameras and the Generator
+#### 4. Extra Expriment With Images From All Three Cameras and the Generator
 But out of curiosity, I did try to use the images from all three cemeras and use the generator to load data and preprocess it on the fly, in batch size of 32. The model with the images from all three cameras and with a generator (model_generator.py). 
 
 For the images from the left cemera, I used the correction = 0.2 to the steering measurement and correction = 0.2 for the images from the right camera.
