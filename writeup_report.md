@@ -24,9 +24,9 @@ The goals / steps of this project are the following:
 [image_recover4]: ./examples/recover4.jpg "Recovery Image"
 [image_normal]: ./examples/normal.png "Normal Image"
 [image_flipped]: ./examples/flipped.png "Flipped Image"
-[image_original]: ./examples/original.jpg "Original Image"
-[image_normalized]: ./examples/normalized.jpg "Normalized Image"
-[image_cropped]: ./examples/cropped.jpg "Cropped Image"
+[image_original]: ./examples/normal.png "Original Image"
+[image_normalized]: ./examples/normalized.png "Normalized Image"
+[image_cropped]: ./examples/cropped.png "Cropped Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -112,12 +112,13 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 | Dense                 | fulluy connected, output size 1     |           
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+
 ![alt text][image_model]
 
-The lamda layer is to noralize the images and the cropping is used to choose an area of interest that excludes the sky and/or the hood of the car. Here is an example of an input image and its cropped version after passing through the normlization layer and the Cropping2D layer:
+The lamda layer is to normalize the images and the cropping is used to choose an area of interest that excludes the sky and/or the hood of the car. Here is an example of an input image and and the image after passing the normlization layer and the Cropping2D layer:
+
 ![alt text][image_original]
 ![alt text][image_normalized]
-![alt text][image_cropped]
 
 #### 3. Creation of the Training Set & Training Process
 
@@ -145,8 +146,7 @@ Besides the new images collected, I also used the example data set provided by U
 
 To further augment the data sat, I also flipped images and angles thinking that this would reduce the left or right turn bias.  For example, here is an image that has then been flipped:
 
-![alt text][image_normal]
-![alt text][image_flipped]
+![alt text][image_normal]![alt text][image_flipped]
 
 When I tried with the above images from the center cemera, I found that the car was generally driving automatically well, but have the problem of wandering off to the side of the road when there are sharp turns, so I collected more data around those areas from track 1. 
 
