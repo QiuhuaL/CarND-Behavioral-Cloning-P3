@@ -29,7 +29,7 @@ The goals / steps of this project are the following:
 [image_cropped]: ./examples/cropped.jpg "Cropped Image"
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
 ### Files Submitted & Code Quality
@@ -96,32 +96,20 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 #### 2. Final Model Architecture
 
 The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following sequential layers:
-Layer (type)         notes
-=================================================================
-Lambda                normalization       
-_________________________________________________________________
-cropping2d            cropping
-_________________________________________________________________
-Convolution2D         kernel:5x5, depth:24, max pooling 2*2, RELU
-_________________________________________________________________
-Convolution2D         kernel:5x5, depth:36, max pooling 2*2, RELU
-_________________________________________________________________
-Convolution2D         kernel:5x5, depth:48, max pooling 2*2, RELU 
-_________________________________________________________________
-Convolution2D         kernel:3x3, depth:64, RELU         
-_________________________________________________________________
-Convolution2D         kernel:3x3, depth:64, RELU         
-_________________________________________________________________
-Flatten               output size 1164        
-_________________________________________________________________
-Dense                 output size 100             
-_________________________________________________________________
-Dense                 output size 50               
-_________________________________________________________________
-Dense                 output size 10                 
-_________________________________________________________________
-Dense                 output size 1                 
-=================================================================
+
+|Layer (type)           |   Description	                      |
+|:---------------------:|:--------------------------------------:|
+| Lambda                | Image Normalization   |       
+| cropping2d            | Image Cropping  |
+| Convolution2D         | kernel:5x5, depth:24, max pooling 2x2, RELU|
+| Convolution2D         | kernel:5x5, depth:48, max pooling 2x2, RELU| 
+| Convolution2D         | kernel:3x3, depth:64, RELU    |     
+| Convolution2D         | kernel:3x3, depth:64, RELU    |     
+| Flatten               | fully connected, output size 1164        |
+| Dense                 | fully connected, output size 100          |   
+| Dense                 | fully connected, output size 50               |
+| Dense                 | fulluy connected, output size 10                 |
+| Dense                 | fulluy connected, output size 1     |           
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 ![alt text][image_model]
